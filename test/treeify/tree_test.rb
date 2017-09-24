@@ -68,7 +68,7 @@ class TreeTest < Test::Unit::TestCase
     
     tree = Treeify::Tree.new lines: lines, separator: "/"
     root = tree.root
-
+    
     # root.write
 
     assert_equal exp, root, "lines: #{lines}"

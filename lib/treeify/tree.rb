@@ -58,9 +58,9 @@ class Treeify::Tree
       if subnode && subnode.value == elmt
         node = subnode
       else
-        subnode = Treeify::Node.new elmt
-        node.children << subnode
-        node = subnode
+        newnode = Treeify::Node.new elmt
+        node.children << newnode
+        node = newnode
       end
     end
   end
