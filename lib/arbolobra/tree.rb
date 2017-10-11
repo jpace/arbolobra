@@ -3,10 +3,10 @@
 
 require 'logue/loggable'
 
-module Treeify
+module Arbolobra
 end
 
-class Treeify::Node
+class Arbolobra::Node
   include Comparable
   
   attr_reader :value
@@ -33,7 +33,7 @@ class Treeify::Node
   end
 end
 
-class Treeify::Tree
+class Arbolobra::Tree
   include Logue::Loggable
 
   attr_reader :root
@@ -42,7 +42,7 @@ class Treeify::Tree
   def initialize lines: nil, separator: nil
     if lines
       raise "lines argument requires a separator" unless separator
-      @root = Treeify::Node.new nil
+      @root = Arbolobra::Node.new nil
       
       lines.each do |line|
         elements = line.split separator
@@ -58,7 +58,7 @@ class Treeify::Tree
       if subnode && subnode.value == elmt
         node = subnode
       else
-        newnode = Treeify::Node.new elmt
+        newnode = Arbolobra::Node.new elmt
         node.children << newnode
         node = newnode
       end

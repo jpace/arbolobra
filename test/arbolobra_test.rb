@@ -1,8 +1,8 @@
 require "test_helper"
 
-class TreeifyTest < Test::Unit::TestCase
+class ArbolobraTest < Test::Unit::TestCase
   def test_that_it_has_a_version_number
-    refute_nil ::Treeify::VERSION
+    refute_nil ::Arbolobra::VERSION
   end
 
   def test_init

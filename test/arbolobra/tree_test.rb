@@ -2,7 +2,7 @@
 # -*- ruby -*-
 
 require 'test/unit'
-require 'treeify/tree'
+require 'arbolobra/tree'
 require 'pp'
 require 'paramesan'
 
@@ -13,7 +13,7 @@ class TreeTest < Test::Unit::TestCase
   include Paramesan
 
   def self.newnode value, *children
-    Treeify::Node.new value, children
+    Arbolobra::Node.new value, children
   end
 
   def self.build_params
@@ -66,7 +66,7 @@ class TreeTest < Test::Unit::TestCase
   param_test build_params do |exp, lines|
     # exp.write
     
-    tree = Treeify::Tree.new lines: lines, separator: "/"
+    tree = Arbolobra::Tree.new lines: lines, separator: "/"
     root = tree.root
     
     # root.write

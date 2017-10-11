@@ -1,17 +1,17 @@
 # coding: utf-8
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "treeify/version"
+require "arbolobra/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "treeify"
-  spec.version       = Treeify::VERSION
+  spec.name          = "arbolobra"
+  spec.version       = Arbolobra::VERSION
   spec.authors       = ["Jeff Pace"]
   spec.email         = ["jeugenepace@gmail.com"]
 
   spec.summary       = %q{Converts flat output to a hierarchy.}
   spec.description   = %q{Converts flat output to a hierarchy.}
-  spec.homepage      = "http://www.github.com/jpace/treeify"
+  spec.homepage      = "http://www.github.com/jpace/arbolobra"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
