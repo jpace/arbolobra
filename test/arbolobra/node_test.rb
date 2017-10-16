@@ -92,13 +92,13 @@ class NodeTest < Test::Unit::TestCase
 
   param_test build_params do |node, wrlines, x|
     strio = StringIO.new
-    node.write indent: 0, chars: nil, output: strio
+    node.write indent: 0, output: strio
     assert_equal wrlines.join("\n") + "\n", strio.string
   end
 
   param_test build_params do |node, x, wrchlines|
     strio = StringIO.new
-    node.write_children indent: 0, chars: nil, output: strio
+    node.write_children indent: 0, output: strio
     assert_equal wrchlines.join("\n") + "\n", strio.string
   end
 end
