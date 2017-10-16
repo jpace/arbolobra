@@ -17,29 +17,19 @@ class Arbolobra::Node
     @children = children
   end
 
-  def print intro: "", lead: "", output: $stdout
+  def print intro: "", lead: "", output: $stdout, chars: Arbolobra::CharSet::DEFAULT
     output.print lead, @value.to_s, "\n"
     @children.each_with_index do |child, idx|
-      print_child child, is_last: idx == @children.size - 1, intro: intro, output: output
+      print_child child, is_last: idx == @children.size - 1, intro: intro, output: output, chars: chars
     end
   end
 
-  def print_child child, intro: "", is_last: false, output: $stdout
-    introchars = [ ' ',  '|', ' ' ]
-    leadchars  = [ '\\', '+', '-' ]
-
-    idx = is_last ? 0 : 1
-    
-    nextintro = intro + expand(introchars[idx], introchars[2])
-    nextlead  = intro + expand(leadchars[idx], leadchars[2])
+  def print_child child, intro: "", is_last: false, output: $stdout, chars: Arbolobra::CharSet::DEFAULT
+    nextintro = intro + chars.intro.expand(is_last)
+    nextlead  = intro + chars.lead.expand(is_last)
     child.print intro: nextintro, lead: nextlead, output: output
   end
 
-  def expand leftchr, repeatchr
-    @width ||= 4
-    leftchr + repeatchr * (@width - 1)
-  end
-  
   def to_s
     @value
   end
