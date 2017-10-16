@@ -1,9 +1,9 @@
 #!/usr/bin/ruby -w
 # -*- ruby -*-
 
-require 'test/unit'
 require 'arbolobra/tree'
-require 'pp'
+require 'test/unit'
+require 'logue/loggable'
 require 'paramesan'
 
 Logue::Log.level = Logue::Log::DEBUG
@@ -12,7 +12,7 @@ class TreeTest < Test::Unit::TestCase
   include Logue::Loggable
   include Paramesan
 
-  def self.newnode value, *children
+  def self.nn value, *children
     Arbolobra::Node.new value, children
   end
 
@@ -20,57 +20,65 @@ class TreeTest < Test::Unit::TestCase
     Array.new.tap do |params|
       lines = Array.new
       lines << "abc"
-      root = newnode nil, [ newnode("abc") ]
+      root = nn nil, [ nn("abc") ]
       
-      params << [ newnode(nil,
-                          newnode("abc")),
-                  lines ]
+      params << [ nn(nil,
+                     nn("abc")),
 
-      lines = Array.new
-      lines << "abc"
-      lines << "def"
+                  Array.new.tap do |a|
+                    a << "abc"
+                  end
+                ]
+      
+      params << [ nn(nil,
+                     nn("abc"),
+                     nn("def")),
 
-      params << [ newnode(nil,
-                          newnode("abc"),
-                          newnode("def")),
-                  lines ]
+                  Array.new.tap do |a|
+                    a << "abc"
+                    a << "def"
+                  end
+                ]
 
-      lines = Array.new
-      lines << "abc/def/ghi"
-      lines << "abc/def/jkl"
-      lines << "abc/ghi"
-      lines << "def/ghi"
-      lines << "def/ghi/2"
-      lines << "def/ghi/3"
-      lines << "abc/mno"
-
-      root = newnode(nil,
-                     newnode("abc",
-                             newnode("def",
-                                     newnode("ghi"), newnode("jkl")),
-                             newnode("ghi")),
+      params << [ nn(nil,
+                     nn("abc",
+                        nn("def",
+                           nn("ghi"), nn("jkl")),
+                        nn("ghi")),
                      
-                     newnode("def",
-                             newnode("ghi",
-                                     newnode("2"),
-                                     newnode("3"))),
+                     nn("def",
+                        nn("ghi",
+                           nn("2"),
+                           nn("3"))),
 
-                     newnode("abc",
-                             newnode("mno")))
+                     nn("abc",
+                        nn("mno"))),
 
-      params << [ root, lines ]
-      
+                  Array.new.tap do |a|
+                    a << "abc/def/ghi"
+                    a << "abc/def/jkl"
+                    a << "abc/ghi"
+                    a << "def/ghi"
+                    a << "def/ghi/2"
+                    a << "def/ghi/3"
+                    a << "abc/mno"
+                  end
+                ]
     end
   end
 
   param_test build_params do |exp, lines|
-    # exp.write
-    
     tree = Arbolobra::Tree.new lines: lines, separator: "/"
     root = tree.root
-    
-    # root.write
-
     assert_equal exp, root, "lines: #{lines}"
+  end
+
+  def test_no_separator
+    begin
+      Arbolobra::Tree.new lines: Array.new
+      fail "new should throw separator exception"
+    rescue => e
+      assert_equal "lines argument requires a separator", e.message
+    end
   end
 end
