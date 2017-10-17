@@ -19,15 +19,16 @@ class Arbolobra::Node
 
   def print intro: "", lead: "", output: $stdout, chars: Arbolobra::CharSet::DEFAULT
     output.print lead, @value.to_s, "\n"
+    childargs = { intro: intro, output: output, chars: chars }
     @children.each_with_index do |child, idx|
-      print_child child, is_last: idx == @children.size - 1, intro: intro, output: output, chars: chars
+      print_child child, childargs.merge({ is_last: idx == @children.size - 1 })
     end
   end
 
   def print_child child, intro: "", is_last: false, output: $stdout, chars: Arbolobra::CharSet::DEFAULT
     nextintro = intro + chars.intro.expand(is_last)
     nextlead  = intro + chars.lead.expand(is_last)
-    child.print intro: nextintro, lead: nextlead, output: output
+    child.print intro: nextintro, lead: nextlead, output: output, chars: chars
   end
 
   def to_s

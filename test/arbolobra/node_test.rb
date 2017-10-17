@@ -17,20 +17,20 @@ class NodeTest < Test::Unit::TestCase
     Array.new.tap do |params|
       params << [ nn(nil,
                      nn('abc')),
+
+                  Hash.new,
                   
                   Array.new.tap do |a|
                     a << ''
                     a << '\\---abc'
-                  end,
-
-                  Array.new.tap do |a|
-                    a << 'abc'
                   end
                 ]
       
       params << [ nn(nil,
                      nn('abc'),
                      nn('def')),
+                  
+                  Hash.new,
                   
                   Array.new.tap do |a|
                     a << ''
@@ -42,6 +42,8 @@ class NodeTest < Test::Unit::TestCase
       params << [ nn(nil,
                      nn('abc',
                         nn('ghi'))),
+                  
+                  Hash.new,
                   
                   Array.new.tap do |a|
                     a << ''
@@ -55,6 +57,8 @@ class NodeTest < Test::Unit::TestCase
                         nn('ghi')),
                      nn('def')),
                   
+                  Hash.new,
+                  
                   Array.new.tap do |a|
                     a << ''
                     a << '+---abc'
@@ -63,6 +67,24 @@ class NodeTest < Test::Unit::TestCase
                   end
                 ]
 
+      introchars = Arbolobra::CharList.new [ '#', '@', '!' ]
+      leadchars = Arbolobra::CharList.new [ '&', '$', '=' ]
+      
+      params << [ nn(nil,
+                     nn('abc',
+                        nn('ghi')),
+                     nn('def')),
+                  
+                  { chars: Arbolobra::CharSet.new(introchars, leadchars) },
+                  
+                  Array.new.tap do |a|
+                    a << ''
+                    a << '$===abc'
+                    a << '@!!!&===ghi'
+                    a << '&===def'
+                  end
+                ]
+      
       params << [ nn(nil,
                      nn('abc',
                         nn('def',
@@ -77,6 +99,8 @@ class NodeTest < Test::Unit::TestCase
                      nn('abc',
                         nn('mno'))),
 
+                  Hash.new,
+                  
                   Array.new.tap do |a|
                     a << ''
                     a << '+---abc'
@@ -95,9 +119,10 @@ class NodeTest < Test::Unit::TestCase
     end
   end
 
-  param_test build_params do |node, wrlines|
+  param_test build_params do |node, args, wrlines|
     strio = StringIO.new
-    node.print output: strio
+    printargs = args.merge({ output: strio })
+    node.print printargs
     # puts strio.string
     assert_equal wrlines.join("\n") + "\n", strio.string
   end

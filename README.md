@@ -30,30 +30,29 @@ For example, a simple viewer of files and directories, as a tree:
 
 ```ruby
 def build pn
-  Arbolobra::Node.new(pn.basename).tap do |n|
-    if pn.directory?
-      pn.children.sort.each do |child|
-        n.children << build(child)
-      end
-    end
-  end
+  children = pn.directory? ? pn.children.sort : Array.new
+  Arbolobra::Node.new pn.basename, children.collect { |child| build child }
 end
 
-pn = Pathname.new "."
-node = build pn
+args = ARGV.empty? ? %w{ . } : ARGV
 
-node.print
+args.each do |arg|
+  pn = Pathname.new arg
+  node = build pn
+
+  node.print
+end
 ```
 
 And to change output, such as from a list of files, from flat to hierarchical:
 
 ```ruby
-tree = Arbolobra::Tree.new lines: ARGV, separator: "/"
+tree = Arbolobra::Tree.new $stdin.readlines, "/"
 tree.root.print
 ```
 
 ```shell
-% git diff-index --name-only --no-commit-id <commit> | xargs <above script>
+% git diff-index --name-only --no-commit-id <commit> | <above script>
 ```
 
 ```text

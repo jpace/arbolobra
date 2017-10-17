@@ -25,11 +25,33 @@ end
 # x   +---arbolobra_test.rb
 # x   \---test_helper.rb
 
+
+# this is the "intro" (i) and the "lead" (l):
+# <iiiiii><ll>
+# x   |   +---node_test.rb
+# x   |   \---tree_test.rb
+
+# +---abc
+# |yyy+---def
+# |yyy|yyy+---ghi
+# |yyy|yyy\---jkl
+# |yyy\---ghi
+# +---def
+# |yyy\---ghi
+# |yyyxyyy+---2
+# |yyyxyyy\---3
+# \---abc
+# xyyy\---mno
+
+# in intro:
+# | - down to next
+# x - down from last (default is space, not x)
+# y - gap to child (default is space, not y)
+
+# in lead:
 # + - marker to child
 # \ - marker to last
 # - - over to child
-# | - down to next
-# x - down from last (usually space, not x)
 
 class Arbolobra::CharList
   def initialize chars, width: 4
