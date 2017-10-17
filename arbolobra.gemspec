@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Jeff Pace"]
   spec.email         = ["jeugenepace@gmail.com"]
 
-  spec.summary       = %q{Converts flat output to a hierarchy.}
-  spec.description   = %q{Converts flat output to a hierarchy.}
+  spec.summary       = %q{Reads and writes a tree.}
+  spec.description   = %q{Converts flat output to a hierarchy, and outputs with nested sections.}
   spec.homepage      = "http://www.github.com/jpace/arbolobra"
   spec.license       = "MIT"
 
@@ -32,7 +32,7 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.15"
   spec.add_development_dependency "rake", "~> 10.0"
-  spec.add_development_dependency "test-unit", "~> 3.1.5"
+  spec.add_development_dependency "test-unit", "~> 3.1"
   spec.add_development_dependency "paramesan", "~> 0.1.1"
-  spec.add_development_dependency "logue", "~> 1.0.8"
+  spec.add_development_dependency "logue", "~> 1.0"
 end
