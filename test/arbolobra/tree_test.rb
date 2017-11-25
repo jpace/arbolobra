@@ -60,17 +60,8 @@ class TreeTest < Test::Unit::TestCase
   end
 
   param_test build_params do |exp, lines|
-    tree = Arbolobra::Tree.new lines: lines, separator: "/"
+    tree = Arbolobra::Tree.new lines
     root = tree.root
     assert_equal exp, root, "lines: #{lines}"
-  end
-
-  def test_no_separator
-    begin
-      Arbolobra::Tree.new lines: Array.new
-      fail "new should throw separator exception"
-    rescue => e
-      assert_equal "lines argument requires a separator", e.message
-    end
   end
 end

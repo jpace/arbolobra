@@ -7,9 +7,8 @@ class Arbolobra::Tree
   attr_reader :root
   attr_reader :nodes
   
-  def initialize lines: nil, separator: nil
+  def initialize lines, separator = "/"
     if lines
-      raise "lines argument requires a separator" unless separator
       @root = Arbolobra::Node.new nil
       
       lines.each do |line|

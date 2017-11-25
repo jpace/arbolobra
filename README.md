@@ -74,24 +74,6 @@ test
 |   \---tree_test.rb
 +---arbolobra_test.rb
 \---test_helper.rb
-=======
-For example, a simple viewer of files and directories, as a tree:
-
-```ruby
-def build pn
-  Arbolobra::Node.new(pn.basename).tap do |n|
-    if pn.directory?
-      pn.children.sort.each do |child|
-        n.children << build(child)
-      end
-    end
-  end
-end
-
-pn = Pathname.new "."
-node = build pn
-
-node.print
 ```
 
 And to change output, such as from a list of files, from flat to hierarchical:
@@ -124,7 +106,6 @@ tree.root.print
 
 ### Generating from Strings
 
-<<<<<<< HEAD
 To convert strings, such as from a list of files, from flat to hierarchical:
 
 ```ruby
@@ -152,16 +133,6 @@ Output:
 
 Why the blank first line? That's because the "root" of a list of strings is empty -- each line is a
 descendant of that root. (This will be amended in a future release.)
-=======
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run
-the tests. You can also run `bin/console` for an interactive prompt that will allow you to
-experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new
-version, update the version number in `version.rb`, and then run `bundle exec rake release`, which
-will create a git tag for the version, push git commits and tags, and push the `.gem` file to
-[rubygems.org](https://rubygems.org).
->>>>>>> add-node
 
 ## Contributing
 
