@@ -60,7 +60,7 @@ class Arbolobra::CharList
   end
 
   def expand is_last
-    leftchr = @chars[is_last ? 0 : 1]
+    leftchr   = @chars[is_last ? 0 : 1]
     repeatchr = @chars[2]
     leftchr + repeatchr * (@width - 1)
   end
@@ -75,7 +75,7 @@ class Arbolobra::CharSet
   
   def initialize intro, lead
     @intro = intro
-    @lead = lead
+    @lead  = lead
   end
 
   DEFAULT = new Arbolobra::CharList::DEFAULT_INTRO, Arbolobra::CharList::DEFAULT_LEAD

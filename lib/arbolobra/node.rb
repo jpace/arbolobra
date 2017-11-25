@@ -3,9 +3,6 @@
 
 require 'arbolobra/chars'
 
-module Arbolobra
-end
-
 class Arbolobra::Node
   include Comparable
   

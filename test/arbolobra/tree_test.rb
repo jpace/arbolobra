@@ -3,13 +3,9 @@
 
 require 'arbolobra/tree'
 require 'test/unit'
-require 'logue/loggable'
 require 'paramesan'
 
-Logue::Log.level = Logue::Log::DEBUG
-
 class TreeTest < Test::Unit::TestCase
-  include Logue::Loggable
   include Paramesan
 
   def self.nn value, *children
@@ -18,10 +14,6 @@ class TreeTest < Test::Unit::TestCase
 
   def self.build_params
     Array.new.tap do |params|
-      lines = Array.new
-      lines << "abc"
-      root = nn nil, [ nn("abc") ]
-      
       params << [ nn(nil,
                      nn("abc")),
 

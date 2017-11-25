@@ -120,10 +120,9 @@ class NodeTest < Test::Unit::TestCase
   end
 
   param_test build_params do |node, args, wrlines|
-    strio = StringIO.new
+    strio     = StringIO.new
     printargs = args.merge({ output: strio })
     node.print printargs
-    # puts strio.string
     assert_equal wrlines.join("\n") + "\n", strio.string
   end
 end

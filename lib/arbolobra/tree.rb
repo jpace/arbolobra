@@ -3,9 +3,6 @@
 
 require 'arbolobra/node'
 
-module Arbolobra
-end
-
 class Arbolobra::Tree
   attr_reader :root
   attr_reader :nodes
