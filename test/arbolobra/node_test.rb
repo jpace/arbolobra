@@ -23,6 +23,10 @@ class NodeTest < Test::Unit::TestCase
                   Array.new.tap do |a|
                     a << ''
                     a << '\\---abc'
+                  end,
+
+                  Array.new.tap do |a|
+                    a << 'abc'
                   end
                 ]
       

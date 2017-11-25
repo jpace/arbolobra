@@ -25,7 +25,6 @@ end
 # x   +---arbolobra_test.rb
 # x   \---test_helper.rb
 
-
 # this is the "intro" (i) and the "lead" (l):
 # <iiiiii><ll>
 # x   |   +---node_test.rb

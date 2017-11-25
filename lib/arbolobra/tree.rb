@@ -7,13 +7,15 @@ class Arbolobra::Tree
   attr_reader :root
   attr_reader :nodes
   
-  def initialize lines, separator
-    raise "lines argument requires a separator" unless separator
-    @root = Arbolobra::Node.new nil
-    
-    lines.each do |line|
-      elements = line.chomp.split separator
-      create_nodes elements
+  def initialize lines: nil, separator: nil
+    if lines
+      raise "lines argument requires a separator" unless separator
+      @root = Arbolobra::Node.new nil
+      
+      lines.each do |line|
+        elements = line.chomp.split separator
+        create_nodes elements
+      end
     end
   end
 
