@@ -1,16 +1,10 @@
 # Arbolobra
 
-<<<<<<< HEAD
 Arbolobra is for reading and writing a hierarchical set of data, i.e., a tree. ("Arbol" is Spanish
 for "tree", so the palindrome "Arbolobra" means a tree, backward and forward.)
 
 Arbolobra makes it simple to take a flat set of data (such as a list of files of the form
 /path/to/filename) and write that as a tree, and the inverse.
-=======
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up
-your Ruby library into a gem. Put your Ruby code in the file `lib/arbolobra`. To experiment with
-that code, run `bin/console` for an interactive prompt.
->>>>>>> add-node
 
 TODO: Delete this and the text above, and describe your gem
 
@@ -34,7 +28,6 @@ Or install it yourself as:
 
 Arbolobra is for reading and writing a hierarchical set of data, i.e., a tree.
 
-<<<<<<< HEAD
 ### Generating from Data
 
 For example, a simple viewer (a rough equivalent of "find") of files and directories, as a tree:
@@ -101,7 +94,6 @@ tree.root.print
         +---chars_test.rb
         +---node_test.rb
         \---tree_test.rb
->>>>>>> add-node
 ```
 
 ### Generating from Strings
