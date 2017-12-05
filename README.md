@@ -1,12 +1,10 @@
 # Arbolobra
 
 Arbolobra is for reading and writing a hierarchical set of data, i.e., a tree. ("Arbol" is Spanish
-for "tree", so the palindrome "Arbolobra" means a tree, backward and forward.)
+for "tree", so the palindrome "arbolobra" means a tree, backward and forward.)
 
 Arbolobra makes it simple to take a flat set of data (such as a list of files of the form
 /path/to/filename) and write that as a tree, and the inverse.
-
-TODO: Delete this and the text above, and describe your gem
 
 ## Installation
 
@@ -69,43 +67,35 @@ test
 \---test_helper.rb
 ```
 
-And to change output, such as from a list of files, from flat to hierarchical:
-
-```ruby
-tree = Arbolobra::Tree.new lines: ARGV, separator: "/"
-tree.root.print
-```
-
-```shell
-% git diff-index --name-only --no-commit-id <commit> | xargs <above script>
-```
-
-```text
-
-+---.gitignore
-+---README.md
-+---lib
-|   \---arbolobra
-|       +---chars.rb
-|       +---node.rb
-|       \---tree.rb
-\---test
-    \---arbolobra
-        +---chars_test.rb
-        +---node_test.rb
-        \---tree_test.rb
-```
-
-### Generating from Strings
+### Generating from Strings (Lines)
 
 To convert strings, such as from a list of files, from flat to hierarchical:
 
 ```ruby
+require 'arbolobra/tree
+
 tree = Arbolobra::Tree.new $stdin.readlines, "/"
 tree.root.print
 ```
 
-Using the above, converting Git output to a tree:
+In raw form:
+
+```shell
+% git diff-index --name-only --no-commit-id  c2ef601
+```
+
+The output:
+
+```text
+README.md
+lib/arbolobra/chars.rb
+lib/arbolobra/node.rb
+lib/arbolobra/tree.rb
+test/arbolobra/node_test.rb
+test/arbolobra/tree_test.rb
+```
+
+Using the above script, converting Git output to a tree:
 
 ```shell
 % git diff-index --name-only --no-commit-id  c2ef601 |
@@ -117,6 +107,11 @@ Output:
 ```text
 
 +---README.md
++---lib
+|   \---arbolobra
+|       +---chars.rb
+|       +---node.rb
+|       \---tree.rb
 \---test
     \---arbolobra
         +---node_test.rb
