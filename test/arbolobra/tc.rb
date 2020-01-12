@@ -10,7 +10,11 @@ module Arbolobra
     include Paramesan
 
     def self.nn value, *children
-      Arbolobra::Node.new value, *children
+      Arbolobra::Node.new value, children
+    end
+
+    def nn value, *children
+      self.class.nn value, *children
     end
   end
 end

@@ -9,7 +9,7 @@ class Arbolobra::Tree
   
   def initialize lines, separator = "/"
     if lines
-      @root = Arbolobra::Node.new nil
+      @root = Arbolobra::Node.new "."
       
       lines.each do |line|
         elements = line.chomp.split separator

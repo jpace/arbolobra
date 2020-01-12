@@ -8,7 +8,7 @@ module Arbolobra
   class TreeTest < TestCase
     def self.build_params
       Array.new.tap do |params|
-        params << [ nn(nil,
+        params << [ nn(".",
                        nn("abc")),
 
                     Array.new.tap do |a|
@@ -16,7 +16,7 @@ module Arbolobra
                     end
                   ]
         
-        params << [ nn(nil,
+        params << [ nn(".",
                        nn("abc"),
                        nn("def")),
 
@@ -26,12 +26,13 @@ module Arbolobra
                     end
                   ]
 
-        params << [ nn(nil,
+        params << [ nn(".",
                        nn("abc",
                           nn("def",
-                             nn("ghi"), nn("jkl")),
+                             nn("ghi"),
+                             nn("jkl")),
                           nn("ghi")),
-                       
+        
                        nn("def",
                           nn("ghi",
                              nn("2"),

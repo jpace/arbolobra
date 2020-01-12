@@ -110,7 +110,7 @@ module Arbolobra
       strio = StringIO.new
       fmt = Formatter.new args.merge({ output: strio })
       fmt.print node
-      assert_equal to_lines(expected).join(), strio.string
+      assert_equal to_lines(expected).join, strio.string
     end
 
     def to_lines ary

@@ -81,45 +81,52 @@ tree.root.print
 In raw form:
 
 ```shell
-% git diff-index --name-only --no-commit-id  c2ef601
+% git diff-index --name-only --no-commit-id  c2ef
 ```
 
 The output:
 
 ```text
 README.md
+arbolobra.gemspec
 lib/arbolobra/chars.rb
+lib/arbolobra/formatter.rb
 lib/arbolobra/node.rb
 lib/arbolobra/tree.rb
+test/arbolobra/chars_test.rb
+test/arbolobra/formatter_test.rb
 test/arbolobra/node_test.rb
+test/arbolobra/tc.rb
 test/arbolobra/tree_test.rb
 ```
 
 Using the above script, converting Git output to a tree:
 
 ```shell
-% git diff-index --name-only --no-commit-id  c2ef601 |
-  ruby -rarbolobra/tree -e 'tree = Arbolobra::Tree.new $stdin.readlines, "/"; tree.root.print'
+% git diff-index --name-only --no-commit-id c2ef | 
+  ruby -I lib -rarbolobra/tree -e 'tree = Arbolobra::Tree.new $stdin.readlines, "/"; tree.root.print'
 ```
 
 Output:
 
 ```text
-
+.
 +---README.md
++---arbolobra.gemspec
 +---lib
 |   \---arbolobra
 |       +---chars.rb
+|       +---formatter.rb
 |       +---node.rb
 |       \---tree.rb
 \---test
     \---arbolobra
+        +---chars_test.rb
+        +---formatter_test.rb
         +---node_test.rb
+        +---tc.rb
         \---tree_test.rb
 ```
-
-Why the blank first line? That's because the "root" of a list of strings is empty -- each line is a
-descendant of that root. (This will be amended in a future release.)
 
 ## Contributing
 

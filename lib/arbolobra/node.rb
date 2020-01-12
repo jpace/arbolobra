@@ -12,8 +12,12 @@ module Arbolobra
     attr_reader :children
     
     def initialize value, *children
+      @children = if children.size == 1 && children.first.class == Array
+                    children.first
+                  else
+                    children
+                  end
       @value = value
-      @children = children
     end
 
     def print intro: "", lead: "", output: $stdout, charset: Arbolobra::CharSet::DEFAULT
@@ -22,11 +26,15 @@ module Arbolobra
     end
 
     def to_s
-      @value
+      "value: #{@value}, #{@children && @children.size}"
     end
 
     def <=> other
-      value <=> other.value && children <=> other.children
+      cmp = value <=> other.value
+      if cmp == 0
+        cmp = children <=> other.children
+      end
+      cmp
     end
   end
 end
